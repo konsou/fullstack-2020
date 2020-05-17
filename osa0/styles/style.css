@@ -1,0 +1,35 @@
+html {
+    font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+body {
+    width: 600px;
+    margin: auto;
+}
+
+h1 {
+    text-shadow: 3px 3px 1px red;
+    text-align: center;
+}
+
+.big-title {
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.small-title {
+    font-size: xx-small;
+    font-weight: lighter;
+}
+
+.colourful-title {
+    font-size: 20px;
+    font-weight: bold;
+    background: -webkit-linear-gradient(red, lightgreen);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.plain-title {
+    font-family: reset;
+}
