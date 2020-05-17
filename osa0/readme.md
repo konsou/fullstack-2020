@@ -50,3 +50,4 @@ Tee kaavio tilanteesta, missä käyttäjä menee selaimella osoitteeseen https:/
 Tee kaavio tilanteesta, missä käyttäjä luo uuden muistiinpanon single page -versiossa.
 
 Tämä oli osan viimeinen tehtävä ja on aika pushata vastaukset GitHubiin sekä merkata tehdyt tehtävät palautussovellukseen.
+Test
