@@ -1,9 +1,4 @@
-0.1: HTML
-
-Kertaa HTML:n perusteet lukemalla Mozillan tutoriaali HTML:stä.
-
-Tätä tehtävää ei palauteta GitHubiin, riittää että luet tutoriaalin.
-
+DONE - 0.1: HTML - Kertaa HTML:n perusteet lukemalla Mozillan tutoriaali HTML:stä.
 
 0.2: CSS
 
