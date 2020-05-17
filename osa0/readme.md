@@ -1,5 +1,5 @@
-DONE - 0.1: HTML - Kertaa HTML:n perusteet lukemalla Mozillan tutoriaali HTML:stä.
-DONE - 0.2: CSS - Kertaa CSS:n perusteet lukemalla Mozillan tutoriaali CSS:stä.
+DONE - 0.1: HTML - Kertaa HTML:n perusteet lukemalla Mozillan tutoriaali HTML:stä.  
+DONE - 0.2: CSS - Kertaa CSS:n perusteet lukemalla Mozillan tutoriaali CSS:stä.  
 0.3: HTML:n lomakkeet
 
 Tutustu HTML:n lomakkeiden perusteisiin lukemalla Mozillan tutoriaali Your first form.
@@ -50,4 +50,3 @@ Tee kaavio tilanteesta, missä käyttäjä menee selaimella osoitteeseen https:/
 Tee kaavio tilanteesta, missä käyttäjä luo uuden muistiinpanon single page -versiossa.
 
 Tämä oli osan viimeinen tehtävä ja on aika pushata vastaukset GitHubiin sekä merkata tehdyt tehtävät palautussovellukseen.
-Test
