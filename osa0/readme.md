@@ -1,13 +1,5 @@
 DONE - 0.1: HTML - Kertaa HTML:n perusteet lukemalla Mozillan tutoriaali HTML:stä.
-
-0.2: CSS
-
-Kertaa CSS:n perusteet lukemalla Mozillan tutoriaali CSS:stä.
-
-Tätä tehtävää ei palauteta GitHubiin, riittää että luet tutoriaalin.
-
-
-
+DONE - 0.2: CSS - Kertaa CSS:n perusteet lukemalla Mozillan tutoriaali CSS:stä.
 0.3: HTML:n lomakkeet
 
 Tutustu HTML:n lomakkeiden perusteisiin lukemalla Mozillan tutoriaali Your first form.
