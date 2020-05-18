@@ -12,10 +12,10 @@ Tutustu HTML:n lomakkeiden perusteisiin lukemalla Mozillan tutoriaali Your first
 Tee vastaavanlainen kaavio, joka kuvaa mitä tapahtuu tilanteessa, missä käyttäjä luo uuden muistiinpanon ollessaan sivulla https://fullstack-exampleapp.herokuapp.com/notes, eli kirjoittaa tekstikenttään jotain ja painaa nappia tallenna.
 
 Kaavio:
-* 0.4 - uusi muistiinpano - sekvenssikaavio.txt  
-(https://github.com/konsou/fullstack-2020/blob/master/osa0/0.4%20-%20uusi%20muistiinpano%20-%20sekvenssikaavio.txt)
-* 0.4 - uusi muistiinpano - sekvenssikaavio.png  
-(https://github.com/konsou/fullstack-2020/blob/master/osa0/0.4%20-%20uusi%20muistiinpano%20-%20sekvenssikaavio.png)
+* 0.4-uusi-muistiinpano-sekvenssikaavio.txt  
+(https://github.com/konsou/fullstack-2020/blob/master/osa0/0.4-uusi-muistiinpano-sekvenssikaavio.txt)
+* 0.4-uusi-muistiinpano-sekvenssikaavio.png  
+(https://github.com/konsou/fullstack-2020/blob/master/osa0/0.4-uusi-muistiinpano-sekvenssikaavio.txt.png)
 
 # 0.5: Single Page App - TODO
 
