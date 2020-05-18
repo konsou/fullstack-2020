@@ -1,0 +1,18 @@
+title 0.4 - esimerkki - https://fullstack-exampleapp.herokuapp.com/notes
+
+selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/notes
+palvelin->selain: HTML-koodi
+selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/main.css
+palvelin->selain: main.css
+selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/main.js
+palvelin->selain: main.js
+note over selain: 
+Selain alkaa suorittaa js-koodia tiedostosta main.js
+Js-koodi pyytäää JSON-datan palvelimelta
+end note
+selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/data.json
+palvelin->selain: {"0":{"content":"HTML is easy","date":"2019-05-23T17:30:31.098Z"}, "1": {} ... }
+note over selain:
+selain suorittaa tapahtumakäsittelijän, 
+joka renderöi muistiinpanot ruudulle
+end note
