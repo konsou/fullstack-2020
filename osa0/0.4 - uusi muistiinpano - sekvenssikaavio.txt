@@ -1,5 +1,15 @@
-title 0.4 - esimerkki - https://fullstack-exampleapp.herokuapp.com/notes
+title 0.4 - uusi muistiinpano - sekvenssikaavio
 
+selain->palvelin: HTTP POST https://fullstack-exampleapp.herokuapp.com/new_note
+note right of selain:
+POST-pyyntö sisältää uuden muistiinpanon
+avain-arvo-parina:
+note: (muistiinpanon sisältö)
+end note
+note over palvelin:
+palvelin tallentaa muistiinpanon
+end note
+palvelin->selain: HTTP STATUS 302, location: /notes
 selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/notes
 palvelin->selain: HTML-koodi
 selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/main.css
@@ -11,7 +21,10 @@ Selain alkaa suorittaa js-koodia tiedostosta main.js
 Js-koodi pyytäää JSON-datan palvelimelta
 end note
 selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/data.json
-palvelin->selain: {"0":{"content":"HTML is easy","date":"2019-05-23T17:30:31.098Z"}, "1": {} ... }
+palvelin->selain: [{"content":"HTML is easy","date":"2019-05-23T17:30:31.098Z"}, ... ]
+note left of palvelin:
+(muistiinpanot JSON-muodossa)
+end note
 note over selain:
 selain suorittaa tapahtumakäsittelijän, 
 joka renderöi muistiinpanot ruudulle
