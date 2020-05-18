@@ -1,40 +1,23 @@
-DONE - 0.1: HTML - Kertaa HTML:n perusteet lukemalla Mozillan tutoriaali HTML:stä.  
-DONE - 0.2: CSS - Kertaa CSS:n perusteet lukemalla Mozillan tutoriaali CSS:stä.  
-DONE - 0.3: HTML:n lomakkeet - Tutustu HTML:n lomakkeiden perusteisiin lukemalla Mozillan tutoriaali Your first form.  
-0.4: uusi muistiinpano
+# 0.1: HTML - DONE
+Kertaa HTML:n perusteet lukemalla Mozillan tutoriaali HTML:stä.  
 
-Luvussa JavaScriptia sisältävän sivun lataaminen - kertaus kuvataan sekvenssikaavion avulla sivun https://fullstack-exampleapp.herokuapp.com/notes avaamisen aikaansaama tapahtumasarja.
+# 0.2: CSS - DONE
+Kertaa CSS:n perusteet lukemalla Mozillan tutoriaali CSS:stä.  
 
-Kaavio on luotu WebSequenceDiagrams-palvelussa, seuraavasti:
+# 0.3: HTML:n lomakkeet - DONE
+Tutustu HTML:n lomakkeiden perusteisiin lukemalla Mozillan tutoriaali Your first form.  
 
-selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/notes
-palvelin-->selain: HTML-koodi
-selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/main.css
-palvelin-->selain: main.css
-selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/main.js
-palvelin-->selain: main.js
-
-note over selain:
-selain alkaa suorittaa js-koodia
-joka pyytää JSON-datan palvelimelta
-end note
-
-selain->palvelin: HTTP GET https://fullstack-exampleapp.herokuapp.com/data.json
-palvelin-->selain: [{ content: "HTML on helppoa", date: "2019-01-01" }, ...]
-
-note over selain:
-selain suorittaa tapahtumankäsittelijän
-joka renderöi muistiinpanot näytölle
-end note
+# 0.4: uusi muistiinpano - DONE
 
 Tee vastaavanlainen kaavio, joka kuvaa mitä tapahtuu tilanteessa, missä käyttäjä luo uuden muistiinpanon ollessaan sivulla https://fullstack-exampleapp.herokuapp.com/notes, eli kirjoittaa tekstikenttään jotain ja painaa nappia tallenna.
 
-Kirjoita tarvittaessa palvelimella tai selaimessa tapahtuvat operaatiot sopivina kommentteina kaavion sekaan.
+Kaavio:
+* 0.4 - uusi muistiinpano - sekvenssikaavio.txt  
+(https://github.com/konsou/fullstack-2020/blob/master/osa0/0.4%20-%20uusi%20muistiinpano%20-%20sekvenssikaavio.txt)
+* 0.4 - uusi muistiinpano - sekvenssikaavio.png  
+(https://github.com/konsou/fullstack-2020/blob/master/osa0/0.4%20-%20uusi%20muistiinpano%20-%20sekvenssikaavio.png)
 
-Kaavion ei ole pakko olla sekvenssikaavio. Mikä tahansa järkevä kuvaustapa käy.
-
-Kaikki oleellinen tämän ja seuraavien kahden tehtävän tekemiseen liittyvä informaatio on selitettynä tämän osan tekstissä. Näiden tehtävien ideana on, että luet tekstin vielä kerran ja mietit tarkkaan mitä missäkin tapahtuu. Ohjelman koodin lukemista ei näissä tehtävissä edellytetä, vaikka sekin on toki mahdollista.
-0.5: Single Page App
+# 0.5: Single Page App - TODO
 
 Tee kaavio tilanteesta, missä käyttäjä menee selaimella osoitteeseen https://fullstack-exampleapp.herokuapp.com/spa eli muistiinpanojen Single Page App-versioon
 0.6: Uusi muistiinpano
