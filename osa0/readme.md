@@ -15,7 +15,7 @@ Kaavio:
 * 0.4-uusi-muistiinpano-sekvenssikaavio.txt  
 (https://github.com/konsou/fullstack-2020/blob/master/osa0/0.4-uusi-muistiinpano-sekvenssikaavio.txt)
 * 0.4-uusi-muistiinpano-sekvenssikaavio.png  
-(https://github.com/konsou/fullstack-2020/blob/master/osa0/0.4-uusi-muistiinpano-sekvenssikaavio.txt.png)
+(https://github.com/konsou/fullstack-2020/blob/master/osa0/0.4-uusi-muistiinpano-sekvenssikaavio.png)
 
 # 0.5: Single Page App - TODO
 
