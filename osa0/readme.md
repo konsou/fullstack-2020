@@ -17,9 +17,15 @@ Kaavio:
 * 0.4-uusi-muistiinpano-sekvenssikaavio.png  
 (https://github.com/konsou/fullstack-2020/blob/master/osa0/0.4-uusi-muistiinpano-sekvenssikaavio.png)
 
-# 0.5: Single Page App - TODO
+# 0.5: Single Page App - DONE
 
 Tee kaavio tilanteesta, missä käyttäjä menee selaimella osoitteeseen https://fullstack-exampleapp.herokuapp.com/spa eli muistiinpanojen Single Page App-versioon
+
+Kaavio:
+* 0.5-spa-sekvenssikaavio.txt  
+(https://github.com/konsou/fullstack-2020/blob/master/osa0/0.5-spa-sekvenssikaavio.txt)
+* 0.5-spa-sekvenssikaavio.png  
+(https://github.com/konsou/fullstack-2020/blob/master/osa0/0.5-spa-sekvenssikaavio.png)
 
 # 0.6: Uusi muistiinpano - TODO
 
