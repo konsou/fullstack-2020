@@ -21,7 +21,7 @@ const Content = (props) => (
 )
 
 const Total = (props) => (
-  <p>Number of {props.nounPlural}: {props.number1 + props.number2 + props.number3}</p>
+  <p>Number of {props.nounPlural}: {props.number}</p>
 )
 
 const App = () => {
@@ -47,9 +47,7 @@ const App = () => {
       />
       <Total 
         nounPlural={nounPlural}
-        number1={exercises1}
-        number2={exercises2}
-        number3={exercises3}
+        number={exercises1 + exercises2 + exercises3}
       />
       
     </div>
