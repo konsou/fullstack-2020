@@ -31,4 +31,8 @@ Kaavio:
 
 Tee kaavio tilanteesta, missä käyttäjä luo uuden muistiinpanon single page -versiossa.
 
-Tämä oli osan viimeinen tehtävä ja on aika pushata vastaukset GitHubiin sekä merkata tehdyt tehtävät palautussovellukseen.
+Kaavio:
+* 0.6-uusi-muistiinpano-spa-sekvenssikaavio.txt  
+(https://github.com/konsou/fullstack-2020/blob/master/osa0/0.6-uusi-muistiinpano-spa-sekvenssikaavio.txt)
+* 0.6-uusi-muistiinpano-spa-sekvenssikaavio.png  
+(https://github.com/konsou/fullstack-2020/blob/master/osa0/0.6-uusi-muistiinpano-spa-sekvenssikaavio.png)
