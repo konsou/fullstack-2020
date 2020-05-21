@@ -1,0 +1,16 @@
+title 0.6 - uusi muistiinpano single page appissa - sekvenssikaavio
+
+note over selain:
+käyttäjä kirjoittaa muistiinpanon
+ja painaa Save-nappia
+js-tapahtumakäsittelijä tekee seuraavat:
+    -tallentaa uuden muistiinpanon
+    -tyhjentää muistiinpanokentän
+    -renderöi uuden muistiinpanon ruudulle
+    -lähettää uuden muistiinpanon palvelimelle
+end note
+selain->palvelin: HTTP POST https://fullstack-exampleapp.herokuapp.com/new_note_spa
+note right of selain: POST-pyyntö sisältää uuden muistiinpanon JSON-muodossa
+note over palvelin: palvelin tallentaa muistiinpanon
+palvelin->selain: HTTP status 201 (luotu) - {"message":"note created"}
+note over selain: selain tulostaa palvelimen vastauksen konsoliin
