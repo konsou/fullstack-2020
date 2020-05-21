@@ -6,55 +6,65 @@ const Header = (props) => (
   <h1>{props.text}</h1>
 )
 
-const Part = (props) => (
+const Part = (props) => {
+  console.log(`in Part - part: ${JSON.stringify(props.part)}`)
+  return (
   <p>
-    {props.text} {props.number}
+    {props.part.name} {props.part.exercises}
   </p>
-)
+  )
+}
 
-const Content = (props) => (
+const Content = (props) => {
+  console.log(`in Content - parts: ${JSON.stringify(props.parts)}`)
+  props.parts.forEach(element => console.log(element))
+  return (
   <>
-    <Part text={props.text1} number={props.number1} />
-    <Part text={props.text2} number={props.number2} />
-    <Part text={props.text3} number={props.number3} />
+    <Part part={props.parts[0]} />
+    <Part part={props.parts[1]} />
+    <Part part={props.parts[2]} />
   </>
-)
+  )
+}
 
 const Total = (props) => (
-  <p>Number of {props.nounPlural}: {props.number}</p>
+  <p>Number of {props.nounPlural}: {sumProperties(props.parts, "exercises")}</p>
 )
+
+const sumProperties = (array, propertyName) => {
+  let sum = 0
+  array.forEach(element => {
+    sum += element[propertyName]
+  });
+  return sum
+}
 
 const App = () => {
   const nounPlural = "exercises"
 
   const course = 'Half Stack application development'
-  const part1 = {
-    name: 'Fundamentals of React',
-    exercises: 10
-  }
-  const part2 = {
-    name: 'Using props to pass data',
-    exercises: 7
-  }
-  const part3 = {
-    name: 'State of a component',
-    exercises: 14
-  }
+  const parts = [
+    {
+      name: 'Fundamentals of React',
+      exercises: 10
+    },
+    {
+      name: 'Using props to pass data',
+      exercises: 7
+    },
+    {
+      name: 'State of a component',
+      exercises: 14
+    }
+  ]
 
   return (
     <div>
       <Header text={course} />
-      <Content 
-        text1={part1.name}
-        number1={part1.exercises}
-        text2={part2.name}
-        number2={part2.exercises}
-        text3={part3.name}
-        number3={part3.exercises}
-      />
+      <Content parts={parts} />
       <Total 
         nounPlural={nounPlural}
-        number={part1.exercises + part2.exercises + part3.exercises}
+        parts={parts}
       />
       
     </div>
