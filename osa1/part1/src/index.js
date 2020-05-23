@@ -18,18 +18,30 @@ const Hello = ({ name, age }) => {
 const IncrementButton = props => {
   const [ counter, setCounter ] = useState(0)
 
-  const incrementCounter = (current) => setCounter(current + 1)
-
   return (
   <div>
-    <button onClick={incrementCounter(counter)}>{counter}</button>
+    <button onClick={() => setCounter(counter + 1)}>Button click count: {counter}</button>
   </div>
   )
 }
 
+const TimedCounter = ({ timeOut }) => {
+  const [ counter, setCounter ] = useState(0)
 
-const App = ({ counter }) => {
+  setTimeout(
+    () => setCounter(counter + 1),
+    timeOut
+  )
+
+  return (
+    <div>Timed counter: {counter}</div>
+  )
+}
+
+
+const App = (props) => {
   console.log("Apissa ollaan")
+
 
   const now = new Date()
   const a = 10
@@ -39,7 +51,9 @@ const App = ({ counter }) => {
 
   return (
   <div>
-    <div>Counter: {counter}</div>
+    <TimedCounter timeOut="1000" />
+    <TimedCounter timeOut="500" />
+    <IncrementButton />
     <Hello name="World" age="several billions of" />
     <Hello name="Ruby" age="23" />
     <Hello age="1" name="Name and Age order different" />
@@ -51,13 +65,8 @@ const App = ({ counter }) => {
   )
 }
 
-let counter = 1
 
-const refresh = () => {
-  ReactDOM.render(<App counter={counter}/>, document.getElementById("root"))
-}
-
-setInterval(() => {
-  refresh()
-  counter += 1
-}, 1000)
+ReactDOM.render(
+  <App />, 
+  document.getElementById("root")
+)
