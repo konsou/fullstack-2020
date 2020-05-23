@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 
-const Hello = ({name, age}) => {
+const Hello = ({ name, age }) => {
   const birthYearEstimate = () => new Date().getFullYear() - age
 
   if (isNaN(age)){
@@ -15,7 +15,20 @@ const Hello = ({name, age}) => {
   }
 }
 
-const App = () => {
+const IncrementButton = props => {
+  const [ counter, setCounter ] = useState(0)
+
+  const incrementCounter = (current) => setCounter(current + 1)
+
+  return (
+  <div>
+    <button onClick={incrementCounter(counter)}>{counter}</button>
+  </div>
+  )
+}
+
+
+const App = ({ counter }) => {
   console.log("Apissa ollaan")
 
   const now = new Date()
@@ -26,6 +39,7 @@ const App = () => {
 
   return (
   <div>
+    <div>Counter: {counter}</div>
     <Hello name="World" age="several billions of" />
     <Hello name="Ruby" age="23" />
     <Hello age="1" name="Name and Age order different" />
@@ -37,4 +51,13 @@ const App = () => {
   )
 }
 
-ReactDOM.render(<App />, document.getElementById("root"))
+let counter = 1
+
+const refresh = () => {
+  ReactDOM.render(<App counter={counter}/>, document.getElementById("root"))
+}
+
+setInterval(() => {
+  refresh()
+  counter += 1
+}, 1000)
