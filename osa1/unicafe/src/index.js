@@ -10,18 +10,18 @@ const Button = ({ text, handleClick }) => {
 }
 
 const Statistics = ({ good, neutral, bad }) => {
-  const numberOfFeedbacks = () => good + neutral + bad
-  const feedbackAverage = () => (good + bad * -1) / (numberOfFeedbacks())
-  const percentGoodFeedback = () => good / numberOfFeedbacks() * 100
+  const feedbackCount = () => good + neutral + bad
+  const feedbackAverage = () => (good + bad * -1) / (feedbackCount())
+  const percentGoodFeedback = () => good / feedbackCount() * 100
 
-  if (numberOfFeedbacks()){
+  if (feedbackCount()){
     return (
       <div>
         <h1>Stats</h1>
         <Display label="Good feedback" value={good} />
         <Display label="Neutral feedback" value={neutral} />
         <Display label="Bad feedback" value={bad} />
-        <Display label="Total number of feedback" value={numberOfFeedbacks()} />
+        <Display label="Total number of feedback" value={feedbackCount()} />
         <Display label="Feedback average" value={feedbackAverage()} />
         <Display label="Positive feedback" value={percentGoodFeedback()} unit="%" />
       </div>
