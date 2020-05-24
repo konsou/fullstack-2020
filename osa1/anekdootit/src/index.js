@@ -1,17 +1,21 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
-const selectRandomItem = array => array[Math.floor(Math.random()*(array.length - 1))]
+const randomIndex = array => Math.floor(Math.random()*(array.length - 1))
+const randomItem = array => array[randomIndex(array)]
 
-const RandomAnecdote = ({ anecdotes }) => <div>{selectRandomItem(anecdotes)}</div>
+const Display = ({ text }) => <div>{text}</div>
+const Button = ({ text, handleClick }) => <button onClick={handleClick}>{text}</button>
 
 const App = ({ anecdotes }) => {
-  const [selected, setSelected] = useState(selectRandomItem(anecdotes))
+  const [selectedIndex, setSelectedIndex] = useState(randomIndex(anecdotes))
+
+  const selectRandomAnecdote = () => setSelectedIndex(randomIndex(anecdotes))
 
   return (
     <div>
-      <RandomAnecdote anecdotes={anecdotes} />
-      <button onClick={() => setSelected(selectRandomItem(anecdotes))}>New anecdote</button>
+      <Display text={anecdotes[selectedIndex]} />
+      <Button text="Random anecdote" handleClick={() => selectRandomAnecdote()} />
     </div>
   )
 }
