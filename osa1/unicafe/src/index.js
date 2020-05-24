@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 
-const Display = ({ label, value }) => (
-  <div>{label}: {value}</div>
-)
+const Display = ({ label, value, unit }) => ( <div>{label}: {value} {unit}</div> )
 
 const Button = ({ text, handleClick }) => {
   return (
@@ -17,7 +15,9 @@ const App = () => {
   const [ feedbackBad, setFeedbackBad ] = useState(0)
 
   const addFeedback = (counter, setCounter) => setCounter(counter + 1)
-  const feedbackAverage = () => (feedbackGood + feedbackBad * -1) / (feedbackGood + feedbackNeutral + feedbackBad)
+  const numberOfFeedbacks = () => feedbackGood + feedbackNeutral + feedbackBad
+  const feedbackAverage = () => (feedbackGood + feedbackBad * -1) / (numberOfFeedbacks())
+  const percentGoodFeedback = () => feedbackGood / numberOfFeedbacks() * 100
 
   return (
     <div>
@@ -31,7 +31,9 @@ const App = () => {
         <Display label="Good feedback" value={feedbackGood} />
         <Display label="Neutral feedback" value={feedbackNeutral} />
         <Display label="Bad feedback" value={feedbackBad} />
+        <Display label="Total number of feedback" value={numberOfFeedbacks()} />
         <Display label="Feedback average" value={feedbackAverage()} />
+        <Display label="Positive feedback" value={percentGoodFeedback()} unit="%" />
       </div>
     </div>
   )
