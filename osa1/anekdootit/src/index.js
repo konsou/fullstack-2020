@@ -8,13 +8,23 @@ const Display = ({ text }) => <div>{text}</div>
 const Button = ({ text, handleClick }) => <button onClick={handleClick}>{text}</button>
 
 const App = ({ anecdotes }) => {
-  const [selectedIndex, setSelectedIndex] = useState(randomIndex(anecdotes))
+  const [ selectedIndex, setSelectedIndex ] = useState(randomIndex(anecdotes))
+  const [ votes, setVotes ] = useState(new Uint32Array(anecdotes.length))
 
   const selectRandomAnecdote = () => setSelectedIndex(randomIndex(anecdotes))
+  const addVote = (index) => {
+    const copy = [...votes]
+    copy[index] += 1
+    setVotes(copy)
+  }
+
+  console.log("selectedIndex: ", selectedIndex)
+  console.log("votes: ", votes)
 
   return (
     <div>
       <Display text={anecdotes[selectedIndex]} />
+      <Button text="+1" handleClick={() => addVote(selectedIndex)} />
       <Button text="Random anecdote" handleClick={() => selectRandomAnecdote()} />
     </div>
   )
