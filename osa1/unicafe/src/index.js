@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 
-const StatisticLine = ({ label, value, unit }) => ( <div>{label}: {value} {unit}</div> )
+const StatisticRow = ({ label, value, unit }) => ( 
+  <tr>
+    <td>{label}</td>
+    <td>{value} {unit}</td>
+  </tr> 
+)
+
 const Button = ({ text, handleClick }) => ( <button onClick={handleClick}>{text}</button> )
 
 const Statistics = ({ good, neutral, bad }) => {
@@ -13,12 +19,16 @@ const Statistics = ({ good, neutral, bad }) => {
     return (
       <div>
         <h1>Stats</h1>
-        <StatisticLine label="Good feedback" value={good} />
-        <StatisticLine label="Neutral feedback" value={neutral} />
-        <StatisticLine label="Bad feedback" value={bad} />
-        <StatisticLine label="Total number of feedback" value={feedbackCount()} />
-        <StatisticLine label="Feedback average" value={feedbackAverage()} />
-        <StatisticLine label="Positive feedback" value={percentGoodFeedback()} unit="%" />
+        <table>
+          <tbody>
+            <StatisticRow label="Good feedback" value={good} />
+            <StatisticRow label="Neutral feedback" value={neutral} />
+            <StatisticRow label="Bad feedback" value={bad} />
+            <StatisticRow label="Total number of feedback" value={feedbackCount()} />
+            <StatisticRow label="Feedback average" value={feedbackAverage()} />
+            <StatisticRow label="Positive feedback" value={percentGoodFeedback()} unit="%" />
+          </tbody>
+        </table>
       </div>
     )
   } else {
