@@ -7,7 +7,7 @@ const AnecdoteOfTheDay = ({ anecdotes, selectedIndex, selectRandomAnecdoteFuncti
   return (
     <div>
       <h1>Anecdote of the Day</h1>
-      <Display text={anecdotes[selectedIndex]} />
+      <p>{anecdotes[selectedIndex]}</p>
       <Button text="+1" handleClick={addVoteFunction} />
       <Button text="Random anecdote" handleClick={selectRandomAnecdoteFunction} />
     </div>
@@ -22,7 +22,7 @@ const MostUpvotedAnecdote = ({ anecdotes, votes }) => {
     return (
       <div>
         <h1>The most upvoted anectode</h1>
-        (no votes cast yet)
+        <p>(no votes cast yet)</p>
       </div>
     )
   } else {
@@ -31,14 +31,13 @@ const MostUpvotedAnecdote = ({ anecdotes, votes }) => {
     return (
       <div>
         <h1>The most upvoted anectode</h1>
-        <Display text={mostUpvotedAnecdote} />
-        <div>This anecdote has {highestVoteCount} votes</div>
+        <p>{mostUpvotedAnecdote}</p>
+        <p>This anecdote has {highestVoteCount} votes</p>
       </div>
     )
   }
 }
 
-const Display = ({ text }) => <div>{text}</div>
 const Button = ({ text, handleClick }) => <button onClick={handleClick}>{text}</button>
 
 const App = ({ anecdotes }) => {
