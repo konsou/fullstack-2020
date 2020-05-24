@@ -17,6 +17,7 @@ const App = () => {
   const [ feedbackBad, setFeedbackBad ] = useState(0)
 
   const addFeedback = (counter, setCounter) => setCounter(counter + 1)
+  const feedbackAverage = () => (feedbackGood + feedbackBad * -1) / (feedbackGood + feedbackNeutral + feedbackBad)
 
   return (
     <div>
@@ -30,6 +31,7 @@ const App = () => {
         <Display label="Good feedback" value={feedbackGood} />
         <Display label="Neutral feedback" value={feedbackNeutral} />
         <Display label="Bad feedback" value={feedbackBad} />
+        <Display label="Feedback average" value={feedbackAverage()} />
       </div>
     </div>
   )
