@@ -2,7 +2,17 @@ import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
 const randomIndex = array => Math.floor(Math.random()*(array.length - 1))
-const randomItem = array => array[randomIndex(array)]
+
+const AnecdoteOfTheDay = ({ anecdotes, selectedIndex, selectRandomAnecdoteFunction, addVoteFunction }) => {
+  return (
+    <div>
+      <h1>Anecdote of the Day</h1>
+      <Display text={anecdotes[selectedIndex]} />
+      <Button text="+1" handleClick={addVoteFunction} />
+      <Button text="Random anecdote" handleClick={selectRandomAnecdoteFunction} />
+    </div>
+  )
+}
 
 const Display = ({ text }) => <div>{text}</div>
 const Button = ({ text, handleClick }) => <button onClick={handleClick}>{text}</button>
@@ -12,6 +22,11 @@ const App = ({ anecdotes }) => {
   const [ votes, setVotes ] = useState(new Uint32Array(anecdotes.length))
 
   const selectRandomAnecdote = () => setSelectedIndex(randomIndex(anecdotes))
+  const highestVoteIndex = () => {
+    const highestVoteCount = Math.max(...votes)
+    console.log("Highest vote count ", highestVoteCount)
+    return votes.findIndex((value) => value === highestVoteCount)
+  }
   const addVote = (index) => {
     const copy = [...votes]
     copy[index] += 1
@@ -23,11 +38,16 @@ const App = ({ anecdotes }) => {
 
   return (
     <div>
-      <Display text={anecdotes[selectedIndex]} />
-      <Button text="+1" handleClick={() => addVote(selectedIndex)} />
-      <Button text="Random anecdote" handleClick={() => selectRandomAnecdote()} />
+      <AnecdoteOfTheDay 
+        anecdotes={anecdotes} 
+        selectedIndex={selectedIndex} 
+        selectRandomAnecdoteFunction={selectRandomAnecdote} 
+        addVoteFunction={() => addVote(selectedIndex)}
+      />
+      <h1>The most upvoted anectode</h1>
+      <Display text={anecdotes[highestVoteIndex()]} />
     </div>
-  )
+)
 }
 
 const anecdotes = [
