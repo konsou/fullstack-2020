@@ -14,6 +14,30 @@ const AnecdoteOfTheDay = ({ anecdotes, selectedIndex, selectRandomAnecdoteFuncti
   )
 }
 
+const MostUpvotedAnecdote = ({ anecdotes, votes }) => {
+  const highestVoteCount = Math.max(...votes)
+  console.log("Highest vote count ", highestVoteCount)
+
+  if (highestVoteCount <= 0){
+    return (
+      <div>
+        <h1>The most upvoted anectode</h1>
+        (no votes cast yet)
+      </div>
+    )
+  } else {
+    const highestVoteIndex = votes.findIndex((value) => value === highestVoteCount)
+    const mostUpvotedAnecdote = anecdotes[highestVoteIndex] 
+    return (
+      <div>
+        <h1>The most upvoted anectode</h1>
+        <Display text={mostUpvotedAnecdote} />
+        <div>This anecdote has {highestVoteCount} votes</div>
+      </div>
+    )
+  }
+}
+
 const Display = ({ text }) => <div>{text}</div>
 const Button = ({ text, handleClick }) => <button onClick={handleClick}>{text}</button>
 
@@ -22,11 +46,6 @@ const App = ({ anecdotes }) => {
   const [ votes, setVotes ] = useState(new Uint32Array(anecdotes.length))
 
   const selectRandomAnecdote = () => setSelectedIndex(randomIndex(anecdotes))
-  const highestVoteIndex = () => {
-    const highestVoteCount = Math.max(...votes)
-    console.log("Highest vote count ", highestVoteCount)
-    return votes.findIndex((value) => value === highestVoteCount)
-  }
   const addVote = (index) => {
     const copy = [...votes]
     copy[index] += 1
@@ -44,8 +63,11 @@ const App = ({ anecdotes }) => {
         selectRandomAnecdoteFunction={selectRandomAnecdote} 
         addVoteFunction={() => addVote(selectedIndex)}
       />
-      <h1>The most upvoted anectode</h1>
-      <Display text={anecdotes[highestVoteIndex()]} />
+      <MostUpvotedAnecdote
+        anecdotes={anecdotes}
+        votes={votes}
+      />
+      
     </div>
 )
 }
