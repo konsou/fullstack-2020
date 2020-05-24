@@ -1,22 +1,11 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 
-const Display = ({counter}) => {
-  return (
-    <div>
-      Counter: {counter}
-    </div>
-  )
-}
+const Display = ({ counter }) => ( <div>Counter: {counter}</div> )
+const Button = ({ text, handleClick }) => ( <button onClick={handleClick}>{text}</button> )
+  
 
-const Button = ({text, handleClick}) => {
-  return (
-    <button onClick={handleClick}>{text}</button>
-  )
-}
-
-
-const App = (props) => {
+const App = props => {
   console.log("Apissa ollaan")
 
   const [ counter, setCounter ] = useState(0)
