@@ -1,12 +1,17 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
-const App = (props) => {
-  const [selected, setSelected] = useState(0)
+const selectRandomItem = array => array[Math.floor(Math.random()*(array.length - 1))]
+
+const RandomAnecdote = ({ anecdotes }) => <div>{selectRandomItem(anecdotes)}</div>
+
+const App = ({ anecdotes }) => {
+  const [selected, setSelected] = useState(selectRandomItem(anecdotes))
 
   return (
     <div>
-      {props.anecdotes[selected]}
+      <RandomAnecdote anecdotes={anecdotes} />
+      <button onClick={() => setSelected(selectRandomItem(anecdotes))}>New anecdote</button>
     </div>
   )
 }
