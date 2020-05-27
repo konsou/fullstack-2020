@@ -1,3 +1,6 @@
+import React from 'react'
+import ReactDOM from 'react-dom'
+
 const notes = [
   {
     id: 1,
@@ -17,18 +20,28 @@ const notes = [
     date: '2020-01-10T19:20:14.298Z',
     important: true
   }
+
 ]
 
-const App = (props) => {
-  const { notes } = props
+const Note = ({ note }) => {
+
+  return (
+    <li>
+      {note.content}
+    </li>
+  )
+}
+
+const App = ({ notes }) => {
+  console.log('App - notes: ', notes)
 
   return (
     <div>
       <h1>Notes</h1>
       <ul>
-        <li>{notes[0].content}</li>
-        <li>{notes[1].content}</li>
-        <li>{notes[2].content}</li>
+        {notes.map(note => 
+          <Note key={note.id} note={note} />
+        )}
       </ul>
     </div>
   )
