@@ -47,11 +47,10 @@ const Total = ({ parts }) => (
 
 
 const sumProperties = (object, propertyName) => {
-  let sum = 0
-  object.forEach(element => {
-    sum += element[propertyName]
-  });
-  return sum
+  return object.reduce(
+    (accumulator, object) => accumulator += object[propertyName], 
+    0 // counter starting value
+  )
 }
 
 
