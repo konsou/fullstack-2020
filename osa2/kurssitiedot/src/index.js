@@ -42,7 +42,7 @@ const Part = ({ part }) => {
 
 
 const Total = ({ parts }) => (
-  <p>Number of courses: {sumProperties(parts, "exercises")}</p>
+  <p>Number of exercises: {sumProperties(parts, "exercises")}</p>
 )
 
 
