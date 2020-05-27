@@ -2,71 +2,90 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 
-const Header = (props) => (
-  <h1>{props.text}</h1>
-)
-
-const Part = (props) => {
-  console.log(`in Part - part: ${JSON.stringify(props.part)}`)
+const Course = ({ course }) => {
+  console.log("Course - course: ", course)
   return (
-  <p>
-    {props.part.name} {props.part.exercises}
-  </p>
+    <div>
+      <Header text={course.name} />
+      <Content parts={course.parts} />
+      <Total parts={course.parts} />    
+    </div>
   )
 }
 
-const Content = (props) => {
-  console.log(`in Content - parts: ${JSON.stringify(props.parts)}`)
-  props.parts.forEach(element => console.log(element))
+
+const Header = ({ text }) => (
+  <h1>{text}</h1>
+)
+
+
+const Content = ({ parts }) => {
+  console.log('in Content - parts: ', parts)
   return (
-  <>
-    <Part part={props.parts[0]} />
-    <Part part={props.parts[1]} />
-    <Part part={props.parts[2]} />
-  </>
+    <ul>
+      {parts.map(part => 
+        <Part key={part.id} part={part} />
+      )}
+    </ul>
   )
 }
 
-const Total = (props) => (
-  <p>Number of {props.nounPlural}: {sumProperties(props.parts, "exercises")}</p>
+
+const Part = ({ part }) => {
+  console.log('in Part - part: ', part)
+  return (
+    <p>
+      {part.name} {part.exercises}
+    </p>
+  )
+}
+
+
+const Total = ({ parts }) => (
+  <p>Number of courses: {sumProperties(parts, "exercises")}</p>
 )
 
-const sumProperties = (array, propertyName) => {
+
+const sumProperties = (object, propertyName) => {
   let sum = 0
-  array.forEach(element => {
+  object.forEach(element => {
     sum += element[propertyName]
   });
   return sum
 }
 
-const App = () => {
-  const nounPlural = "exercises"
 
-  const course = 'Half Stack application development'
-  const parts = [
-    {
-      name: 'Fundamentals of React',
-      exercises: 10
-    },
-    {
-      name: 'Using props to pass data',
-      exercises: 7
-    },
-    {
-      name: 'State of a component',
-      exercises: 14
-    }
-  ]
+const App = () => {
+  const course = {
+    name: 'Half Stack application development',
+    id: 1,
+    parts: [
+      {
+        name: 'Fundamentals of React',
+        exercises: 10,
+        id: 1
+      },
+      {
+        name: 'Using props to pass data',
+        exercises: 7,
+        id: 2
+      },
+      {
+        name: 'State of a component',
+        exercises: 14,
+        id: 3
+      },
+      {
+        name: 'Fourth test part',
+        exercises: 99,
+        id: 4
+      }
+    ]
+  }
 
   return (
     <div>
-      <Header text={course} />
-      <Content parts={parts} />
-      <Total 
-        nounPlural={nounPlural}
-        parts={parts}
-      />
-      
+      <Course course={course} />
     </div>
   )
 }
