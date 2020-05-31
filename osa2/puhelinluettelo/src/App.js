@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
+import Filter from './components/Filter'
 import Person from './components/Person'
+import AddPersonForm from './components/AddPersonForm'
 
 const App = () => {
     const [ persons, setPersons] = useState([
@@ -48,27 +50,26 @@ const App = () => {
 
     const handleFilterChange = (event) => setFilter(event.target.value)
 
+    const sortedPersons = persons.sort((a, b) => a.name.localeCompare(b.name))
+
     const filteredPersons = 
         filter 
-        ? persons.filter(person => person.name.toLowerCase().includes(filter.toLowerCase()))
-        : persons
+        ? sortedPersons.filter(person => person.name.toLocaleLowerCase().includes(filter.toLocaleLowerCase()))
+        : sortedPersons
 
     return (
         <div>
-            <h2>Phonebook</h2>
+            <h1>Phonebook</h1>
             <h2>Filter</h2>
-            <input onChange={handleFilterChange} value={filter} />
+            <Filter handleFilterChange={handleFilterChange} filter={filter} />
             <h2>Add a new person</h2>
-            <form>
-                <div id="error">{errorMessage}</div>
-                <div>
-                    name: <input onChange={handleNameChange} value={newName} /><br />
-                    phone number: <input onChange={handlePhoneNumberChange} value={newPhoneNumber} />
-                </div>
-                <div>
-                    <button onClick={handleNewPerson} type="submit">add</button>
-                </div>
-            </form>
+            <AddPersonForm 
+                handleNameChange={handleNameChange}
+                newName={newName}
+                handlePhoneNumberChange={handlePhoneNumberChange}
+                newPhoneNumber={newPhoneNumber}
+                handleNewPerson={handleNewPerson}
+            />
             <h2>Numbers</h2>
             <table>
                 <tbody>
