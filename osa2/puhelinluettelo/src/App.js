@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Filter from './components/Filter'
-import Person from './components/Person'
+import Persons from './components/Persons'
 import AddPersonForm from './components/AddPersonForm'
 
 const App = () => {
@@ -12,7 +12,6 @@ const App = () => {
     ]) 
     const [ newName, setNewName ] = useState('')
     const [ newPhoneNumber, setNewPhoneNumber ] = useState('')
-    const [ errorMessage, setErrorMessage] = useState('')
     const [ filter, setFilter] = useState('')
 
     const handleNewPerson = (event) => {
@@ -27,7 +26,6 @@ const App = () => {
         if (persons.some(person => person.name === newPerson.name)) { 
             console.log('person exists')
             alert(`${newName} already exists!`)
-            //setErrorMessage('{person.name} already exists!') 
             }
         else {
             console.log('person doesn\'t exist, adding')
@@ -38,14 +36,11 @@ const App = () => {
     }
 
     const handleNameChange = (event) => {
-        //console.log(event.target.value)
         setNewName(event.target.value)
     }
 
     const handlePhoneNumberChange = (event) => {
-        // TODO
         setNewPhoneNumber(event.target.value)
-        // console.log(event.target.value)
     }
 
     const handleFilterChange = (event) => setFilter(event.target.value)
@@ -61,7 +56,10 @@ const App = () => {
         <div>
             <h1>Phonebook</h1>
             <h2>Filter</h2>
-            <Filter handleFilterChange={handleFilterChange} filter={filter} />
+            <Filter 
+                handleFilterChange={handleFilterChange} 
+                filter={filter} 
+                />
             <h2>Add a new person</h2>
             <AddPersonForm 
                 handleNameChange={handleNameChange}
@@ -69,17 +67,11 @@ const App = () => {
                 handlePhoneNumberChange={handlePhoneNumberChange}
                 newPhoneNumber={newPhoneNumber}
                 handleNewPerson={handleNewPerson}
-            />
+                />
             <h2>Numbers</h2>
-            <table>
-                <tbody>
-                    { filteredPersons.map(person => <Person key={person.name} person={person} />) }
-                </tbody>
-            </table>
-            
+            <Persons persons={filteredPersons} />
         </div>
     )
-
 }
 
 export default App
