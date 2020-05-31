@@ -3,14 +3,15 @@ import Person from './components/Person'
 
 const App = () => {
     const [ persons, setPersons] = useState([
-        { 
-            name: 'Arto Hellas',
-            number: '040 123 4567'
-        }
+        { name: 'Arto Hellas', number: '040-123456' },
+        { name: 'Ada Lovelace', number: '39-44-5323523' },
+        { name: 'Dan Abramov', number: '12-43-234345' },
+        { name: 'Mary Poppendieck', number: '39-23-6423122' }
     ]) 
     const [ newName, setNewName ] = useState('')
     const [ newPhoneNumber, setNewPhoneNumber ] = useState('')
     const [ errorMessage, setErrorMessage] = useState('')
+    const [ filter, setFilter] = useState('')
 
     const handleNewPerson = (event) => {
         event.preventDefault()
@@ -45,9 +46,19 @@ const App = () => {
         // console.log(event.target.value)
     }
 
+    const handleFilterChange = (event) => setFilter(event.target.value)
+
+    const filteredPersons = 
+        filter 
+        ? persons.filter(person => person.name.toLowerCase().includes(filter.toLowerCase()))
+        : persons
+
     return (
         <div>
             <h2>Phonebook</h2>
+            <h2>Filter</h2>
+            <input onChange={handleFilterChange} value={filter} />
+            <h2>Add a new person</h2>
             <form>
                 <div id="error">{errorMessage}</div>
                 <div>
@@ -61,7 +72,7 @@ const App = () => {
             <h2>Numbers</h2>
             <table>
                 <tbody>
-                    { persons.map(person => <Person key={person.name} person={person} />) }
+                    { filteredPersons.map(person => <Person key={person.name} person={person} />) }
                 </tbody>
             </table>
             
