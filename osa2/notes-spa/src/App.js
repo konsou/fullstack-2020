@@ -8,6 +8,7 @@ const App = (props) => {
     const [ newNote, setNewNote ] = useState('new note text')
     const [ showAll, setShowAll ] = useState(true)
 
+    // This effect runs once, after the first render
     useEffect(() => {
       console.log('in effect')
       axios
