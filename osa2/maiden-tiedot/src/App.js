@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import CountriesList from './components/CountriesList'
+import CountryView from './components/CountryView'
 import Filter from './components/Filter'
 
 
@@ -22,9 +22,10 @@ const App = props => {
         handleFilterChange={handleFilterChange} 
         filter={filter} 
         />
-      <CountriesList 
+      <CountryView 
         countries={countries} 
-        filter={filter} />
+        filter={filter} 
+        />
     </div>
   );
 }
