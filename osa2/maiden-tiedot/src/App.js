@@ -24,7 +24,8 @@ const App = props => {
         />
       <CountryView 
         countries={countries} 
-        filter={filter} 
+        filter={filter}
+        setFilter={setFilter} 
         />
     </div>
   );
