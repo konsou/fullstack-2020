@@ -1,4 +1,5 @@
 import React from 'react'
+import CityWeather from './CityWeather'
 
 const CountryVerbose = ({ country }) => (
     <div className="countryData">
@@ -10,6 +11,7 @@ const CountryVerbose = ({ country }) => (
             { country.languages.map(language => <li key={language.name}>{language.name}</li>) }
         </ul>
         <img src={country.flag} width="20%" alt={`Flag for ${country.name}`} />
+        <CityWeather city={country.capital} countryCodeAlpha2={country.alpha2Code} />
     </div>
 )
 
