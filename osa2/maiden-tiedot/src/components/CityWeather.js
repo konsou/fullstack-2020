@@ -5,22 +5,18 @@ const CityWeather = ({ city, countryCodeAlpha2 }) => {
     const [ weather, setWeather ] = useState(null)
     
     useEffect(() => {
-        if (!weather){
-            const apiKey = process.env.REACT_APP_API_KEY
-            const apiUrl = `http://api.openweathermap.org/data/2.5/weather?q=${city},${countryCodeAlpha2}&appid=${apiKey}&units=metric`
-            console.log(apiUrl)
+        const apiKey = process.env.REACT_APP_API_KEY
+        const apiUrl = `http://api.openweathermap.org/data/2.5/weather?q=${city},${countryCodeAlpha2}&appid=${apiKey}&units=metric`
+        console.log(apiUrl)
 
-            axios
-                .get(apiUrl)
-                .then(response =>{
-                    console.log('weather API response:')
-                    console.log(response.data)
-                    setWeather(response.data)
-                    // if (response.data.success){ setWeather(response.data) }
-                    // else { console.log('WEATHER API ERROR')}
-                })
-        }
-    }, [city, countryCodeAlpha2, weather])    
+        axios
+            .get(apiUrl)
+            .then(response =>{
+                console.log('weather API response:')
+                console.log(response.data)
+                setWeather(response.data)
+            })
+    }, [city, countryCodeAlpha2])    
 
     if (weather) {    
         const weatherIcon = weather.weather[0].icon
