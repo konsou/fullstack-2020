@@ -6,5 +6,4 @@ const Filter = ({ handleFilterChange, filter }) => (
     </div>
 )
 
-
 export default Filter
