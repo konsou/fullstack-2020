@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Note from './components/Note'
+import noteService from './services/notes'
 
 
 const App = (props) => {
@@ -11,11 +12,11 @@ const App = (props) => {
     // This effect runs once, after the first render
     useEffect(() => {
       console.log('in effect')
-      axios
-        .get('http://localhost:3001/notes')
-        .then(response => {
+      noteService
+        .getAll()
+        .then(notes => {
           console.log('notes fetched')
-          setNotes(response.data)
+          setNotes(notes)
         })
     }, [])
 
@@ -32,17 +33,12 @@ const App = (props) => {
         important: Math.random() > 0.5,
       }
 
-      axios
-        .post('http://localhost:3001/notes', noteObject)
-        .then(response => {
-          setNotes(notes.concat(response.data))
+      noteService
+        .create(noteObject)
+        .then(newNote => {
+          setNotes(notes.concat(newNote))
           setNewNote('')
         })
-    }
-
-    const handleNoteChange = (event) => {
-      // console.log(event.target.value)
-      setNewNote(event.target.value)
     }
 
     const toggleImportanceOf = (id) => {
@@ -52,11 +48,16 @@ const App = (props) => {
       const changedNote = { ...note, important: !note.important }
       console.log('note after change: ', changedNote)
 
-      axios
-        .put(url, changedNote)
-        .then(response =>{
-          setNotes(notes.map(note => note.id !== id ? note : response.data))
+      noteService
+        .update(id, changedNote)
+        .then(updatedNote =>{
+          setNotes(notes.map(note => note.id !== id ? note : updatedNote))
         })
+    }
+
+    const handleNoteChange = (event) => {
+      // console.log(event.target.value)
+      setNewNote(event.target.value)
     }
 
     const notesToShow = showAll
