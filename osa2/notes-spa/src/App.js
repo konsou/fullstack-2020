@@ -53,6 +53,10 @@ const App = (props) => {
         .then(updatedNote =>{
           setNotes(notes.map(note => note.id !== id ? note : updatedNote))
         })
+        .catch(error => {
+          alert(`Couldn't toggle importance of note ${id}\n(${error.message})`)
+          setNotes(notes.filter(note => note.id !== id))
+        })
     }
 
     const handleNoteChange = (event) => {
