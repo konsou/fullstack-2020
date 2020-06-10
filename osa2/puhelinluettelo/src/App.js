@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
 import Filter from './components/Filter'
 import Persons from './components/Persons'
 import AddPersonForm from './components/AddPersonForm'
+import personService from './services/persons'
 
 const App = () => {
     const [ persons, setPersons] = useState([]) 
@@ -11,12 +11,15 @@ const App = () => {
     const [ filter, setFilter] = useState('')
 
     useEffect(() => {
-        axios
-            .get('http://localhost:3001/persons')
-            .then(response => {
+        personService
+            .getAll()
+            .then(persons => {
                 console.log('axios response:')
-                console.log(response)
-                setPersons(response.data)
+                console.log(persons)
+                setPersons(persons)
+            })
+            .catch(error => {
+                alert(`Error fetching persons. Maybe your internet connection is down?\n${error.message}`)
             })
     }, []) // run only once
 
@@ -35,10 +38,31 @@ const App = () => {
             }
         else {
             console.log('person doesn\'t exist, adding')
-            setPersons(persons.concat(newPerson))
-            setNewName('')
-            setNewPhoneNumber('')
+            personService
+                .create(newPerson)
+                .then(createdPerson => {
+                    setPersons(persons.concat(createdPerson))
+                    setNewName('')
+                    setNewPhoneNumber('')
+                })
+                .catch(error => {
+                    alert(`Error creating person:\n${error.message}`)
+                })
+            
+            
         }
+    }
+
+    const handleDeletePerson = (id) => {
+        console.log(`Deleting person ${id}`)
+        personService
+            .deletePerson(id)
+            .then(() => {
+                setPersons(persons.filter(person => person.id !== id))
+            })
+            .catch(error => {
+                alert(`Error deleting person:\n${error.message}`)
+            })
     }
 
     const handleNameChange = (event) => {
@@ -75,7 +99,10 @@ const App = () => {
                 handleNewPerson={handleNewPerson}
                 />
             <h2>Numbers</h2>
-            <Persons persons={filteredPersons} />
+            <Persons 
+                persons={filteredPersons} 
+                handleDeletePerson={handleDeletePerson}
+                />
         </div>
     )
 }
