@@ -55,14 +55,17 @@ const App = () => {
 
     const handleDeletePerson = (id) => {
         console.log(`Deleting person ${id}`)
-        personService
-            .deletePerson(id)
-            .then(() => {
-                setPersons(persons.filter(person => person.id !== id))
-            })
-            .catch(error => {
-                alert(`Error deleting person:\n${error.message}`)
-            })
+
+        if (window.confirm(`Are you sure you want to delete ${persons.find(person => person.id === id).name}?`)){
+            personService
+                .deletePerson(id)
+                .then(() => {
+                    setPersons(persons.filter(person => person.id !== id))
+                })
+                .catch(error => {
+                    alert(`Error deleting person:\n${error.message}`)
+                })
+        }
     }
 
     const handleNameChange = (event) => {
