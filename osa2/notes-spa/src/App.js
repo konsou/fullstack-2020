@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
 import Note from './components/Note'
+import Notification from './components/Notification'
 import noteService from './services/notes'
 
 
@@ -8,6 +8,8 @@ const App = (props) => {
     const [ notes, setNotes ] = useState([])
     const [ newNote, setNewNote ] = useState('new note text')
     const [ showAll, setShowAll ] = useState(true)
+    const [ notificationMessage, setNotificationMessage ] = useState(null)
+
 
     // This effect runs once, after the first render
     useEffect(() => {
@@ -54,7 +56,12 @@ const App = (props) => {
           setNotes(notes.map(note => note.id !== id ? note : updatedNote))
         })
         .catch(error => {
-          alert(`Couldn't toggle importance of note ${id}\n(${error.message})`)
+          setNotificationMessage(`Couldn't toggle importance of note ${id}: ${error.message}`)
+          
+          setTimeout(() => {
+            setNotificationMessage(null)
+          }, 5000)
+          
           setNotes(notes.filter(note => note.id !== id))
         })
     }
@@ -71,6 +78,7 @@ const App = (props) => {
     return (
       <div>
         <h1>Notes</h1>
+        <Notification message={notificationMessage} />
         <div>
           <button onClick={() => setShowAll(!showAll)}>
             show {showAll ? 'important' : 'all'} notes
