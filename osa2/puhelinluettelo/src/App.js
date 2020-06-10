@@ -32,9 +32,25 @@ const App = () => {
         }
         console.log('new person: ', newPerson)
         // Check for duplicate entries
-        if (persons.some(person => person.name === newPerson.name)) { 
+        const duplicatePerson = persons.find(person => person.name === newName)
+
+        if (duplicatePerson) { 
             console.log('person exists')
-            alert(`${newName} already exists!`)
+            if (window.confirm(`${newName} already exists\n` +
+                               `Current phone number: ${duplicatePerson.number}\n` + 
+                               `Replace phone number with ${newPhoneNumber}?`
+            )){
+                personService
+                    .update(duplicatePerson.id, newPerson)
+                    .then(updatedPerson => {
+                        setPersons(persons.map(person => person.id === updatedPerson.id ? updatedPerson : person))
+                        setNewName('')
+                        setNewPhoneNumber('')
+                    })
+                    .catch(error => {
+                        alert(`Error updating person:\n${error.message}`)
+                    })
+            }
             }
         else {
             console.log('person doesn\'t exist, adding')
