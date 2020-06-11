@@ -1,14 +1,25 @@
 import React, { useState, useEffect } from 'react'
+import Notification from './components/Notification'
 import Filter from './components/Filter'
 import Persons from './components/Persons'
 import AddPersonForm from './components/AddPersonForm'
 import personService from './services/persons'
+
+const notificationShowTime = 5000
 
 const App = () => {
     const [ persons, setPersons] = useState([]) 
     const [ newName, setNewName ] = useState('')
     const [ newPhoneNumber, setNewPhoneNumber ] = useState('')
     const [ filter, setFilter] = useState('')
+    const [ notification, setNotification ] = useState({message: null, isError: false})
+
+    const displayNotification = (message, isError=false) => {
+        setNotification({message, isError})
+        if (!isError) {
+            setTimeout(() => { setNotification({message: null, isError: false})}, notificationShowTime)
+        }
+    }
 
     useEffect(() => {
         personService
@@ -17,11 +28,14 @@ const App = () => {
                 console.log('axios response:')
                 console.log(persons)
                 setPersons(persons)
+                displayNotification(`${persons.length} persons fetched`)
+
             })
             .catch(error => {
-                alert(`Error fetching persons. Maybe your internet connection is down?\n${error.message}`)
+                displayNotification(`Error fetching persons. Maybe your internet connection is down? (${error.message})`, true)
             })
     }, []) // run only once
+
 
     const handleNewPerson = (event) => {
         event.preventDefault()
@@ -46,9 +60,10 @@ const App = () => {
                         setPersons(persons.map(person => person.id === updatedPerson.id ? updatedPerson : person))
                         setNewName('')
                         setNewPhoneNumber('')
+                        displayNotification(`Updated telephone number for ${newName}`, false)
                     })
                     .catch(error => {
-                        alert(`Error updating person:\n${error.message}`)
+                        displayNotification(`Error updating person: ${error.message}`, true)
                     })
             }
             }
@@ -60,9 +75,10 @@ const App = () => {
                     setPersons(persons.concat(createdPerson))
                     setNewName('')
                     setNewPhoneNumber('')
+                    displayNotification(`Added ${createdPerson.name}`, false)
                 })
                 .catch(error => {
-                    alert(`Error creating person:\n${error.message}`)
+                    displayNotification(`Error creating person: ${error.message}`, true)
                 })
             
             
@@ -71,15 +87,17 @@ const App = () => {
 
     const handleDeletePerson = (id) => {
         console.log(`Deleting person ${id}`)
+        const personToDelete = persons.find(person => person.id === id)
 
-        if (window.confirm(`Are you sure you want to delete ${persons.find(person => person.id === id).name}?`)){
+        if (window.confirm(`Are you sure you want to delete ${personToDelete.name}?`)){
             personService
                 .deletePerson(id)
                 .then(() => {
                     setPersons(persons.filter(person => person.id !== id))
+                    displayNotification(`${personToDelete.name} deleted`)
                 })
                 .catch(error => {
-                    alert(`Error deleting person:\n${error.message}`)
+                    displayNotification(`Error deleting person: ${error.message}`, true)
                 })
         }
     }
@@ -104,6 +122,7 @@ const App = () => {
     return (
         <div>
             <h1>Phonebook</h1>
+            <Notification message={notification.message} isError={notification.isError} />
             <h2>Filter</h2>
             <Filter 
                 handleFilterChange={handleFilterChange} 
