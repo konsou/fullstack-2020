@@ -57,6 +57,7 @@ const App = () => {
                 personService
                     .update(duplicatePerson.id, newPerson)
                     .then(updatedPerson => {
+                        console.log('updatedPerson', updatedPerson)
                         setPersons(persons.map(person => person.id === updatedPerson.id ? updatedPerson : person))
                         setNewName('')
                         setNewPhoneNumber('')
