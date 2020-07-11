@@ -42,6 +42,14 @@ const App = (props) => {
           setNotes(notes.concat(newNote))
           setNewNote('')
         })
+        .catch(error =>{
+          console.log(error)
+          setNotificationMessage(`Couldn't add note: ${error.message}`)
+          
+          setTimeout(() => {
+            setNotificationMessage(null)
+          }, 5000)
+        })
     }
 
     const toggleImportanceOf = (id) => {
