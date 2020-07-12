@@ -100,7 +100,7 @@ const App = () => {
                     displayNotification(`${personToDelete.name} deleted`)
                 })
                 .catch(error => {
-                    displayNotification(`Error deleting person: ${error.response.data.error}`, true)
+                    displayNotification(`Error deleting person. Maybe someone else already deleted it?`, true)
                 })
         }
     }
