@@ -32,7 +32,7 @@ const App = () => {
 
             })
             .catch(error => {
-                displayNotification(`Error fetching persons. Maybe your internet connection is down? (${error.message})`, true)
+                displayNotification(`Error fetching persons. Maybe your internet connection is down? (${error.response.data.error})`, true)
             })
     }, []) // run only once
 
@@ -64,7 +64,8 @@ const App = () => {
                         displayNotification(`Updated telephone number for ${newName}`, false)
                     })
                     .catch(error => {
-                        displayNotification(`Error updating person: ${error.message}`, true)
+                        console.log(error.response.data)
+                        displayNotification(`Error updating person: ${error.response.data.error}`, true)
                     })
             }
             }
@@ -79,7 +80,8 @@ const App = () => {
                     displayNotification(`Added ${createdPerson.name}`, false)
                 })
                 .catch(error => {
-                    displayNotification(`Error creating person: ${error.message}`, true)
+                    console.log(error.response.data)
+                    displayNotification(`Error creating person: ${error.response.data.error}`, true)
                 })
             
             
@@ -98,7 +100,7 @@ const App = () => {
                     displayNotification(`${personToDelete.name} deleted`)
                 })
                 .catch(error => {
-                    displayNotification(`Error deleting person: ${error.message}`, true)
+                    displayNotification(`Error deleting person: ${error.response.data.error}`, true)
                 })
         }
     }
